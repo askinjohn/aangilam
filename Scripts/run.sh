@@ -1,0 +1,11 @@
+#!/bin/zsh
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+APP="$ROOT/build/Aangilam.app"
+if [[ ! -d "$APP" ]]; then
+  echo "Build Aangilam first: $ROOT/Scripts/package_dmg.sh" >&2
+  exit 1
+fi
+/usr/bin/killall Aangilam 2>/dev/null || true
+sleep 0.4
+/usr/bin/open "$APP"
